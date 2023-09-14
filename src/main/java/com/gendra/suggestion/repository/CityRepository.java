@@ -1,6 +1,6 @@
 package com.gendra.suggestion.repository;
 
-import com.gendra.suggestion.Entity.City;
+import com.gendra.suggestion.entity.City;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 

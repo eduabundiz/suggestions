@@ -1,6 +1,6 @@
 package com.gendra.suggestion.repository;
 
-import com.gendra.suggestion.Entity.CityFile;
+import com.gendra.suggestion.entity.CityFile;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

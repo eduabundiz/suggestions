@@ -1,4 +1,4 @@
-package com.gendra.suggestion.Entity;
+package com.gendra.suggestion.entity;
 
 import lombok.Data;
 

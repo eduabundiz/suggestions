@@ -1,7 +1,7 @@
 package com.gendra.suggestion.controller;
 
-import com.gendra.suggestion.Entity.Suggestion;
-import com.gendra.suggestion.Entity.SuggestionResponse;
+import com.gendra.suggestion.entity.Suggestion;
+import com.gendra.suggestion.entity.SuggestionResponse;
 import com.gendra.suggestion.service.SuggestionService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

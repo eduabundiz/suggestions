@@ -1,8 +1,8 @@
 package com.gendra.suggestion.service;
 
-import com.gendra.suggestion.Entity.City;
-import com.gendra.suggestion.Entity.CityFile;
-import com.gendra.suggestion.Entity.Suggestion;
+import com.gendra.suggestion.entity.City;
+import com.gendra.suggestion.entity.CityFile;
+import com.gendra.suggestion.entity.Suggestion;
 import com.gendra.suggestion.repository.CitiesReaderRepository;
 import com.gendra.suggestion.util.DistanceUtils;
 import java.util.ArrayList;

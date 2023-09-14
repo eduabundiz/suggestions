@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-import com.gendra.suggestion.Entity.Suggestion;
-import com.gendra.suggestion.Entity.SuggestionResponse;
 import com.gendra.suggestion.controller.SuggestionController;
+import com.gendra.suggestion.entity.Suggestion;
+import com.gendra.suggestion.entity.SuggestionResponse;
 import com.gendra.suggestion.service.SuggestionService;
 import java.util.ArrayList;
 import java.util.List;

@@ -3,7 +3,7 @@ package com.gendra.suggestion.repositoryTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import com.gendra.suggestion.Entity.CityFile;
+import com.gendra.suggestion.entity.CityFile;
 import com.gendra.suggestion.repository.CitiesReaderRepository;
 import java.io.IOException;
 import java.io.InputStream;
