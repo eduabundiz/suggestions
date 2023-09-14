@@ -1,16 +1,15 @@
 package com.gendra.suggestion.repository;
 
 import com.gendra.suggestion.Entity.City;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
-
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class CityRepository {
-    List<City> cities;
-    public List<City> findByNameContainingIgnoreCase(String query){
+  List<City> cities;
 
-        return  cities;
-    }
+  public List<City> findByNameContainingIgnoreCase(String query) {
+
+    return cities;
+  }
 }

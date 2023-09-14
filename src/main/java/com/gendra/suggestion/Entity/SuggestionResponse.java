@@ -1,13 +1,13 @@
 package com.gendra.suggestion.Entity;
 
+import java.util.List;
 import lombok.Data;
 
-import java.util.List;
 @Data
 public class SuggestionResponse {
-    List<Suggestion> suggestions;
+  List<Suggestion> suggestions;
 
-    public SuggestionResponse(List<Suggestion> suggestions) {
-        this.suggestions = suggestions;
-    }
+  public SuggestionResponse(List<Suggestion> suggestions) {
+    this.suggestions = suggestions;
+  }
 }
