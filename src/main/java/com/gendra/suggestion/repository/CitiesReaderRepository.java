@@ -1,7 +1,8 @@
-package com.gendra.suggestion.service;
+package com.gendra.suggestion.repository;
 
 import com.gendra.suggestion.Entity.CityFile;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,13 +10,14 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CitiesReaderService {
-    String csvFile = "cities_canada-usa.tsv";
+@Service
+public class CitiesReaderRepository {
+    String TSV_FILE_NAME = "cities_canada-usa.tsv";
     List<CityFile> cities = new ArrayList<>();
 
     public List<CityFile> getCities() {
         try {
-            ClassPathResource resource = new ClassPathResource("cities_canada-usa.tsv");
+            ClassPathResource resource = new ClassPathResource(TSV_FILE_NAME);
             InputStreamReader reader = new InputStreamReader(resource.getInputStream());
             BufferedReader bufferedReader = new BufferedReader(reader);
 
@@ -23,7 +25,6 @@ public class CitiesReaderService {
             line = bufferedReader.readLine();
             // Lee y muestra cada línea del archivo
             while ((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
                 String[] parts = line.split("\t");
                 if (parts.length == 19) { // Verifica que haya 19 columnas en cada línea
                     CityFile city = new CityFile();
