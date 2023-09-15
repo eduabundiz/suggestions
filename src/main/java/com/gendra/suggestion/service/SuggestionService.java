@@ -29,8 +29,7 @@ public class SuggestionService {
         .map(
             city -> {
               double score = calculateScore(city, latitude, longitude);
-              return new Suggestion(
-                  city.getId(), city.getName(), city.getLatitude(), city.getLongitude(), score);
+              return new Suggestion(city, score);
             })
         .sorted((s1, s2) -> Double.compare(s2.getScore(), s1.getScore()))
         .limit(200)
@@ -38,20 +37,20 @@ public class SuggestionService {
   }
 
   public double calculateScore(City city, Double latitude, Double longitude) {
-    double baseScore = 100.0;
-    double distanceScore = calculateDistanceScore(city, latitude, longitude);
+    double baseScore = 100;
+    double distanceScore =
+        (latitude != null && longitude != null)
+            ? calculateDistanceScore(city, latitude, longitude)
+            : 0.0;
     return baseScore * distanceScore;
   }
 
   public double calculateDistanceScore(City city, Double latitude, Double longitude) {
-    if (latitude != null && longitude != null) {
-      double cityLatitude = city.getLatitude();
-      double cityLongitude = city.getLongitude();
-      double distance =
-          DistanceUtils.calculateDistance(cityLatitude, cityLongitude, latitude, longitude);
-      return 1.0 / distance;
-    }
-    return 1.0;
+    double cityLatitude = city.getLatitude();
+    double cityLongitude = city.getLongitude();
+    double distance =
+        DistanceUtils.calculateDistance(cityLatitude, cityLongitude, latitude, longitude);
+    return 1.0 / distance;
   }
 
   public Set<City> findByNameContainingIgnoreCase(List<CityFile> cities, String query) {
