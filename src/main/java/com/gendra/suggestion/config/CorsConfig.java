@@ -14,7 +14,7 @@ public class CorsConfig {
       public void addCorsMappings(CorsRegistry registry) {
         registry
             .addMapping("/suggestions")
-            .allowedOrigins("https://calm-brook-399022.uw.r.appspot.com/doc/swagger-ui/index.html");
+            .allowedOrigins("https://calm-brook-399022.uw.r.appspot.com/");
       }
     };
   }
