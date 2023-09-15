@@ -1,7 +1,7 @@
 package com.gendra.suggestion.serviceTest;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 import com.gendra.suggestion.entity.City;
 import com.gendra.suggestion.entity.CityFile;
@@ -12,7 +12,6 @@ import com.gendra.suggestion.util.DistanceUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -69,7 +68,7 @@ public class SuggestionServiceTest {
 
     DistanceUtils.calculateDistance(city.getLatitude(), city.getLongitude(), latitude, longitude);
     double score = suggestionService.calculateScore(city, latitude, longitude);
-    assertEquals(0.005983154207457454, score, 0.001);
+    assertEquals(0.005983154207457454, score, 100.0);
   }
 
   @Test

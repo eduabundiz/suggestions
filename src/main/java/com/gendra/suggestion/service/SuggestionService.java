@@ -5,11 +5,9 @@ import com.gendra.suggestion.entity.CityFile;
 import com.gendra.suggestion.entity.Suggestion;
 import com.gendra.suggestion.repository.CitiesReaderRepository;
 import com.gendra.suggestion.util.DistanceUtils;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,20 +22,19 @@ public class SuggestionService {
   }
 
   public List<Suggestion> getSuggestions(String query, Double latitude, Double longitude) {
-    List<Suggestion> suggestions = new ArrayList<>();
     List<CityFile> cities = citiesReaderRepository.getCities();
-    Set<City> matchingCities = findByNameContainingIgnoreCase(cities, query);
-    for (City city : matchingCities) {
-      double score = calculateScore(city, latitude, longitude);
-      suggestions.add(
-          new Suggestion(
-              city.getId(), city.getName(), city.getLatitude(), city.getLongitude(), score));
-    }
-    suggestions.sort((s1, s2) -> Double.compare(s2.getScore(), s1.getScore()));
-    if (suggestions.size() > 200) {
-      suggestions = suggestions.subList(0, 200);
-    }
-    return suggestions;
+
+    return cities.stream()
+        .filter(city -> city.getName().toLowerCase().contains(query.toLowerCase()))
+        .map(
+            city -> {
+              double score = calculateScore(city, latitude, longitude);
+              return new Suggestion(
+                  city.getId(), city.getName(), city.getLatitude(), city.getLongitude(), score);
+            })
+        .sorted((s1, s2) -> Double.compare(s2.getScore(), s1.getScore()))
+        .limit(200)
+        .collect(Collectors.toList());
   }
 
   public double calculateScore(City city, Double latitude, Double longitude) {
@@ -58,14 +55,10 @@ public class SuggestionService {
   }
 
   public Set<City> findByNameContainingIgnoreCase(List<CityFile> cities, String query) {
-    Set<City> matchCities = new HashSet<>();
-    for (CityFile cityFile : cities) {
-      if (matchesQuery(cityFile, query)) {
-        City city = new City(cityFile);
-        matchCities.add(city);
-      }
-    }
-    return matchCities;
+    return cities.stream()
+        .filter(cityFile -> matchesQuery(cityFile, query))
+        .map(City::new)
+        .collect(Collectors.toSet());
   }
 
   public boolean matchesQuery(CityFile cityFile, String query) {
