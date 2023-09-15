@@ -41,7 +41,7 @@ public class SuggestionService {
   }
 
   public double calculateScore(City city, Double latitude, Double longitude) {
-    double baseScore = 1.0;
+    double baseScore = 100.0;
     double distanceScore = calculateDistanceScore(city, latitude, longitude);
     return baseScore * distanceScore;
   }
