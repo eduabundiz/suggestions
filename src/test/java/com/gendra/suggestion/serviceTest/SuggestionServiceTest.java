@@ -72,14 +72,14 @@ public class SuggestionServiceTest {
   }
 
   @Test
-  public void testCalculateDistanceScoreWithoutCoordinates() {
+  public void testCalculateScoreWithoutCoordinates() {
     City city = new City();
     city.setLatitude(49.05798);
     city.setLongitude(-122.25257);
 
-    double score = suggestionService.calculateDistanceScore(city, null, null);
+    double score = suggestionService.calculateScore(city, null, null);
 
-    assertEquals(1.0, score, 0.001);
+    assertEquals(0.0, score, 0.001);
   }
 
   @Test
