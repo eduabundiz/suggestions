@@ -11,6 +11,8 @@ import com.gendra.suggestion.service.SuggestionService;
 import com.gendra.suggestion.util.DistanceUtils;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -100,9 +102,9 @@ public class SuggestionServiceTest {
     cityFiles.add(city2);
 
     when(citiesReaderRepository.getCities()).thenReturn(cityFiles);
-    List<City> result = suggestionService.findByNameContainingIgnoreCase(cityFiles, "new");
+    Set<City> result = suggestionService.findByNameContainingIgnoreCase(cityFiles, "new");
     assertEquals(1, result.size());
-    assertEquals("New York", result.get(0).getName());
+    assertEquals("New York", result.stream().findFirst().get().getName());
   }
 
   @Test

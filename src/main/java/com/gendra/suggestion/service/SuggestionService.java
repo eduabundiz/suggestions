@@ -6,7 +6,10 @@ import com.gendra.suggestion.entity.Suggestion;
 import com.gendra.suggestion.repository.CitiesReaderRepository;
 import com.gendra.suggestion.util.DistanceUtils;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +26,7 @@ public class SuggestionService {
   public List<Suggestion> getSuggestions(String query, Double latitude, Double longitude) {
     List<Suggestion> suggestions = new ArrayList<>();
     List<CityFile> cities = citiesReaderRepository.getCities();
-    List<City> matchingCities = findByNameContainingIgnoreCase(cities, query);
+    Set<City> matchingCities = findByNameContainingIgnoreCase(cities, query);
     for (City city : matchingCities) {
       double score = calculateScore(city, latitude, longitude);
       suggestions.add(
@@ -47,15 +50,15 @@ public class SuggestionService {
     if (latitude != null && longitude != null) {
       double cityLatitude = city.getLatitude();
       double cityLongitude = city.getLongitude();
-      Double distance =
+      double distance =
           DistanceUtils.calculateDistance(cityLatitude, cityLongitude, latitude, longitude);
       return 1.0 / distance;
     }
     return 1.0;
   }
 
-  public List<City> findByNameContainingIgnoreCase(List<CityFile> cities, String query) {
-    List<City> matchCities = new ArrayList<>();
+  public Set<City> findByNameContainingIgnoreCase(List<CityFile> cities, String query) {
+    Set<City> matchCities = new HashSet<>();
     for (CityFile cityFile : cities) {
       if (matchesQuery(cityFile, query)) {
         City city = new City(cityFile);
