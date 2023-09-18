@@ -24,14 +24,14 @@ public class CitiesReaderRepositoryTest {
   }
 
   @Test
-  public void testGetCities() {
+  public void testGetFileCities() {
     ClassPathResource resource = new ClassPathResource("cities_test.tsv");
     try {
       InputStream inputStream = resource.getInputStream();
 
       when(resource.getInputStream()).thenReturn(inputStream);
 
-      List<CityFile> cities = citiesReaderRepository.getCities();
+      List<CityFile> cities = citiesReaderRepository.getFileCities();
       assertEquals(2, cities.size());
 
       CityFile city1 = cities.get(0);

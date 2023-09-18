@@ -100,8 +100,8 @@ public class SuggestionServiceTest {
     cityFiles.add(city1);
     cityFiles.add(city2);
 
-    when(citiesReaderRepository.getCities()).thenReturn(cityFiles);
-    Set<City> result = suggestionService.findByNameContainingIgnoreCase(cityFiles, "new");
+    when(citiesReaderRepository.getFileCities()).thenReturn(cityFiles);
+    Set<City> result = suggestionService.findByNameContaining(cityFiles, "new");
     assertEquals(1, result.size());
     assertEquals("New York", result.stream().findFirst().get().getName());
   }
