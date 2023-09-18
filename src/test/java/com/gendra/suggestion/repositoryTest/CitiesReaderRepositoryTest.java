@@ -3,7 +3,7 @@ package com.gendra.suggestion.repositoryTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import com.gendra.suggestion.entity.CityFile;
+import com.gendra.suggestion.entity.CityDAO;
 import com.gendra.suggestion.repository.CitiesReaderRepository;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,15 +31,15 @@ public class CitiesReaderRepositoryTest {
 
       when(resource.getInputStream()).thenReturn(inputStream);
 
-      List<CityFile> cities = citiesReaderRepository.getFileCities();
+      List<CityDAO> cities = citiesReaderRepository.getFileCities();
       assertEquals(2, cities.size());
 
-      CityFile city1 = cities.get(0);
+      CityDAO city1 = cities.get(0);
       assertEquals(1L, city1.getId());
       assertEquals("City1", city1.getName());
       assertEquals("Ascii1", city1.getAscii());
 
-      CityFile city2 = cities.get(1);
+      CityDAO city2 = cities.get(1);
       assertEquals(2L, city2.getId());
       assertEquals("City2", city2.getName());
       assertEquals("Ascii2", city2.getAscii());

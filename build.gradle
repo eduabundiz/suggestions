@@ -24,9 +24,9 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.2.0'
 	implementation group: 'com.puppycrawl.tools', name: 'checkstyle', version: '10.12.3'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

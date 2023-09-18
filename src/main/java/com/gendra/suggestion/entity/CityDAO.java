@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class CityFile extends City {
+public class CityDAO extends City {
   private Long id;
   private String name;
   private String ascii;
@@ -24,9 +24,9 @@ public class CityFile extends City {
   private String tz;
   private String modifiedAt;
 
-  public CityFile() {}
+  public CityDAO() {}
 
-  public CityFile(String[] parts) {
+  public CityDAO(String[] parts) {
     this.setId(Long.parseLong(parts[0]));
     this.setName(parts[1]);
     this.setAscii(parts[2]);
@@ -60,7 +60,7 @@ public class CityFile extends City {
 
   @Override
   public String toString() {
-    return "CityFile{"
+    return "CityDAO{"
         + "id="
         + id
         + ", name='"

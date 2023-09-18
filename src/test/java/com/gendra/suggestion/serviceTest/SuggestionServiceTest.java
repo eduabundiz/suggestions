@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 import com.gendra.suggestion.entity.City;
-import com.gendra.suggestion.entity.CityFile;
+import com.gendra.suggestion.entity.CityDAO;
 import com.gendra.suggestion.entity.Suggestion;
 import com.gendra.suggestion.repository.CitiesReaderRepository;
 import com.gendra.suggestion.service.SuggestionService;
@@ -35,8 +35,8 @@ public class SuggestionServiceTest {
     Double latitude = 43.70011;
     Double longitude = -79.4163;
 
-    CityFile city1 = new CityFile();
-    CityFile city2 = new CityFile();
+    CityDAO city1 = new CityDAO();
+    CityDAO city2 = new CityDAO();
     city1.setId(5881791L);
     city1.setName("Abbotsford");
     city1.setAscii("Abbotsford");
@@ -84,19 +84,19 @@ public class SuggestionServiceTest {
 
   @Test
   public void testFindByNameContainingIgnoreCase() {
-    CityFile city1 = new CityFile();
+    CityDAO city1 = new CityDAO();
     city1.setId(1L);
     city1.setName("New York");
     city1.setAscii("New York");
     city1.setAltName("NYC");
 
-    CityFile city2 = new CityFile();
+    CityDAO city2 = new CityDAO();
     city2.setId(2L);
     city2.setName("Los Angeles");
     city2.setAscii("Los Angeles");
     city2.setAltName("LA");
 
-    List<CityFile> cityFiles = new ArrayList<>();
+    List<CityDAO> cityFiles = new ArrayList<>();
     cityFiles.add(city1);
     cityFiles.add(city2);
 
@@ -108,7 +108,7 @@ public class SuggestionServiceTest {
 
   @Test
   public void testMatchesQuery() {
-    CityFile city1 = new CityFile();
+    CityDAO city1 = new CityDAO();
     city1.setName("New York");
     city1.setAscii("New York");
     city1.setAltName("NYC");

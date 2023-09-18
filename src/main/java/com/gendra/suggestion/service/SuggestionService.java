@@ -1,7 +1,7 @@
 package com.gendra.suggestion.service;
 
 import com.gendra.suggestion.entity.City;
-import com.gendra.suggestion.entity.CityFile;
+import com.gendra.suggestion.entity.CityDAO;
 import com.gendra.suggestion.entity.Suggestion;
 import com.gendra.suggestion.repository.CitiesReaderRepository;
 import com.gendra.suggestion.util.DistanceUtils;
@@ -42,8 +42,7 @@ public class SuggestionService {
    * @return A list of {@link Suggestion} objects sorted by relevance.
    */
   public List<Suggestion> getSuggestions(String query, Double latitude, Double longitude) {
-    List<CityFile> cities = citiesReaderRepository.getCities();
-
+    List<CityDAO> cities = citiesReaderRepository.getCities();
     return cities.stream()
         .filter(city -> matchesQuery(city, query))
         .map(city -> new Suggestion(city, calculateScore(city, latitude, longitude)))
@@ -92,9 +91,9 @@ public class SuggestionService {
    * @param query The user's search query.
    * @return A set of {@link City} objects matching the query.
    */
-  public Set<City> findByNameContaining(List<CityFile> cities, String query) {
+  public Set<City> findByNameContaining(List<CityDAO> cities, String query) {
     return cities.stream()
-        .filter(cityFile -> matchesQuery(cityFile, query))
+        .filter(cityDAO -> matchesQuery(cityDAO, query))
         .map(City::new)
         .collect(Collectors.toSet());
   }
@@ -102,14 +101,14 @@ public class SuggestionService {
   /**
    * Checks if a given city file matches the user's query (case-insensitive).
    *
-   * @param cityFile The city file to check.
+   * @param cityDAO The city file to check.
    * @param query The user's search query.
    * @return {@code true} if the city file matches the query, {@code false} otherwise.
    */
-  public boolean matchesQuery(CityFile cityFile, String query) {
+  public boolean matchesQuery(CityDAO cityDAO, String query) {
     String lowerQuery = query.toLowerCase();
-    return cityFile.getName().toLowerCase().contains(lowerQuery)
-        || cityFile.getAscii().toLowerCase().contains(lowerQuery)
-        || cityFile.getAltName().toLowerCase().contains(lowerQuery);
+    return cityDAO.getName().toLowerCase().contains(lowerQuery)
+        || cityDAO.getAscii().toLowerCase().contains(lowerQuery)
+        || cityDAO.getAltName().toLowerCase().contains(lowerQuery);
   }
 }
