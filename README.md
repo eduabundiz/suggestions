@@ -20,6 +20,12 @@ You can make a sample request using the above address and providing optional par
 http://calm-brook-399022.uw.r.appspot.com/suggestions?q=london&latitude=43.70011&longitude=-79.4163
 ```
 
+or using curl
+
+```sh
+curl -X GET "http://calm-brook-399022.uw.r.appspot.com/suggestions?q=london&latitude=43.70011&longitude=-79.4163"
+```
+
 The response should be the array with different suggestions matching the query send and order by distance shown as score. Also I added the id, because could be taken easily for the selection.
 
 ## Example response
