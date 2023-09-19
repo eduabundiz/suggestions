@@ -39,8 +39,8 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 checkstyle {
-	toolVersion = "10.12.3" // Versión de Checkstyle
-	configFile = file("${rootDir}/google_checks.xml") // Ubicación de tu archivo de configuración Checkstyle
+	toolVersion = "10.12.3"
+	configFile = file("${rootDir}/google_checks.xml")
 
 }
 

@@ -3,6 +3,7 @@ package com.gendra.suggestion.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/** Represents a Data Access Object (DAO) for city information, extending the City class. */
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class CityDAO extends City {
@@ -24,8 +25,14 @@ public class CityDAO extends City {
   private String tz;
   private String modifiedAt;
 
+  /** Default constructor for creating an empty CityDAO object. */
   public CityDAO() {}
 
+  /**
+   * Constructor for creating a CityDAO object from an array of string parts.
+   *
+   * @param parts An array of string parts containing city data.
+   */
   public CityDAO(String[] parts) {
     this.setId(Long.parseLong(parts[0]));
     this.setName(parts[1]);
@@ -56,62 +63,5 @@ public class CityDAO extends City {
 
     this.setTz(parts[17]);
     this.setModifiedAt(parts[18]);
-  }
-
-  @Override
-  public String toString() {
-    return "CityDAO{"
-        + "id="
-        + id
-        + ", name='"
-        + name
-        + '\''
-        + ", ascii='"
-        + ascii
-        + '\''
-        + ", altName='"
-        + altName
-        + '\''
-        + ", latitude="
-        + super.getLatitude()
-        + ", longitude="
-        + super.getLongitude()
-        + ", featClass='"
-        + featClass
-        + '\''
-        + ", featCode='"
-        + featCode
-        + '\''
-        + ", country='"
-        + country
-        + '\''
-        + ", cc2='"
-        + cc2
-        + '\''
-        + ", admin1='"
-        + admin1
-        + '\''
-        + ", admin2='"
-        + admin2
-        + '\''
-        + ", admin3='"
-        + admin3
-        + '\''
-        + ", admin4='"
-        + admin4
-        + '\''
-        + ", population="
-        + population
-        + ", elevation="
-        + elevation
-        + ", dem="
-        + dem
-        + ", tz='"
-        + tz
-        + '\''
-        + ", modifiedAt='"
-        + modifiedAt
-        + '\''
-        + '}';
   }
 }
