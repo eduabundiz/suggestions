@@ -1,0 +1,7 @@
+com.gendra.suggestion
+com.gendra.suggestion.config
+com.gendra.suggestion.controller
+com.gendra.suggestion.entity
+com.gendra.suggestion.repository
+com.gendra.suggestion.service
+com.gendra.suggestion.util
